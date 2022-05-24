@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Exercise } from '../exercise';
+import { Exercise } from '../Exercise';
+import { EXERSICES } from '../mock-exercises';
 
 @Component({
   selector: 'app-exercise',
@@ -12,6 +13,7 @@ export class ExerciseComponent implements OnInit {
     name: 'benchpress',
     musclegroups: ['chest', 'triceps', 'shoulders']
   };
+  exercises = EXERSICES;
   constructor() { 
     
   }

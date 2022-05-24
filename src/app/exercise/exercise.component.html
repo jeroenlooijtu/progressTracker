@@ -1,8 +1,10 @@
 <h2>Exercise</h2>
-<div><span>id: </span>{{exercise.id}}</div>
-<div><span>name: </span>{{exercise.name}}</div>
-<div><span>musclegroups: </span>{{exercise.musclegroups}}</div>
-<div>
-    <label for="name">Hero name: </label>
-    <input id="name"  [(ngModel)]="exercise.name" placeholder="Exercise name">
-</div>
+<ul class="exercises">
+    <li *ngFor="let exercise of exercises">
+        <button type="button">
+            <span class = "id">{{exercise.id}}</span> 
+            <span class = "name">{{exercise.name}}</span>
+        </button>
+
+    </li>
+</ul>
