@@ -1,7 +1,7 @@
-<h2>Exercise</h2>
+<app-exercise-detail [exercise] = "selectedExercise"></app-exercise-detail>
 <ul class="exercises">
     <li *ngFor="let exercise of exercises">
-        <button type="button">
+        <button [class.selected] = "exercise === selectedExercise" type="button" (click) = "onSelect(exercise)">
             <span class = "id">{{exercise.id}}</span> 
             <span class = "name">{{exercise.name}}</span>
         </button>

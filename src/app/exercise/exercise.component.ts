@@ -21,4 +21,9 @@ export class ExerciseComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  selectedExercise?: Exercise;
+  onSelect(exercise : Exercise){
+    this.selectedExercise = exercise;
+  }
+
 }

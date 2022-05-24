@@ -1,0 +1,16 @@
+<div *ngIf = "exercise">
+    <h2>{{exercise.name}} details:</h2>
+    <div>
+        id: {{exercise.id}}
+        <br>
+        musclegroups: 
+        <ul class = "muscleGroups">
+
+            <li *ngFor = "let group of exercise.musclegroups">
+                <p>
+                    {{group}}
+                </p>
+            </li>
+        </ul>
+    </div>
+</div>
