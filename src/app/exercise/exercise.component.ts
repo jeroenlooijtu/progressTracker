@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Exercise } from '../Exercise';
-import { EXERSICES } from '../mock-exercises';
+import { ExerciseService } from '../exercise.service';
+import { NotesService } from '../notes.service';
+
 
 @Component({
   selector: 'app-exercise',
@@ -8,22 +10,24 @@ import { EXERSICES } from '../mock-exercises';
   styleUrls: ['./exercise.component.css']
 })
 export class ExerciseComponent implements OnInit {
-  exercise: Exercise = {
-    id: 1,
-    name: 'benchpress',
-    musclegroups: ['chest', 'triceps', 'shoulders']
-  };
-  exercises = EXERSICES;
-  constructor() { 
+  exercises: Exercise[] = [];
+  selectedExercise?: Exercise;
+  constructor(private exerciseService: ExerciseService, private notesService: NotesService) { 
     
   }
 
   ngOnInit(): void {
+    this.getExercises();
   }
 
-  selectedExercise?: Exercise;
+  getExercises(): void{
+    this.exerciseService.getExercises()
+      .subscribe(exercises => this.exercises = exercises);
+  }
+
   onSelect(exercise : Exercise){
     this.selectedExercise = exercise;
+    this.notesService.add(`ExerciseComponent: Selected Exercise id=${exercise.id}`);
   }
 
 }
