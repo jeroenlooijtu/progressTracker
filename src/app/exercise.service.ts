@@ -19,4 +19,10 @@ export class ExerciseService {
     this.notesService.add('ExerciseService: fetched exercises');
     return exercises;
   }
+
+  getExercise(id: number): Observable<Exercise> {
+    const exercise = EXERSICES.find(e => e.id === id)!;
+    this.notesService.add(`ExerciseService: fetche exercise with id: ${id}`);
+    return of(exercise);
+  }
 }

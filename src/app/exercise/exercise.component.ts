@@ -25,9 +25,5 @@ export class ExerciseComponent implements OnInit {
       .subscribe(exercises => this.exercises = exercises);
   }
 
-  onSelect(exercise : Exercise){
-    this.selectedExercise = exercise;
-    this.notesService.add(`ExerciseComponent: Selected Exercise id=${exercise.id}`);
-  }
 
 }
