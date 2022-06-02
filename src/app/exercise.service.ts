@@ -7,6 +7,7 @@ import { Observable, of } from 'rxjs';
 import { NotesService } from './notes.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs';
+import * as e from 'express';
 
 
 @Injectable({
@@ -23,13 +24,19 @@ export class ExerciseService {
     this.notesService.add(`ExerciseService: ${message}`)
   }
 
-  getExercises(): Observable<JSON> {
+  getExercises(): Observable<Exercise[]> {
     this.log("getting exercises from api")
-    let exercises = this.http.get<JSON>(this.exerciseUrl)
+    let exercises = this.http.get<Exercise[]>(this.exerciseUrl)
       .pipe(
-        catchError(this.handleError<JSON>('this.getExercises'))
+        catchError(this.handleError<Exercise[]>('this.getExercises'))
       );
-    this.log("yes")
+    // this.log("yes")
+    // let returnObservalble: Observable<Exercise[]> = of(this.jsonHandler(exercises))
+    // this.log("The weird observable thing is also doing okayish")
+    // let aaaahhhhh: Exercise[] = [];
+    // returnObservalble.subscribe(
+    //   e => aaaahhhhh = e
+    // );
     return exercises;
   }
 
@@ -46,5 +53,18 @@ export class ExerciseService {
         this.log(`${operation} failed: ${error.message}`)
         return of(result as T)
     }
+  }
+
+  private jsonHandler (json: Observable<JSON>): Exercise[] {
+    let toParse = undefined;
+    json.forEach(
+      e => toParse = e
+    )
+    this.log("Jsonhandler called")
+    this.log(JSON.stringify(toParse))
+    let exerciseArray: Exercise[] = JSON.parse(JSON.stringify(json));
+    this.log(exerciseArray.toString())
+    this.log("The making of the array works at least")
+    return exerciseArray;
   }
 }

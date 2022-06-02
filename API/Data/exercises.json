@@ -1,4 +1,4 @@
-[{
+   [ {
         "id": 1,
         "name": "Benchpress",
         "musclegroups": ["Chest", "Shoulders", "Triceps"]
@@ -23,4 +23,4 @@
         "name": "Latt pull",
         "musclegroups": ["Lats", "Rear delts", "Biceps"]
     }
-]
+   ]
