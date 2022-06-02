@@ -15,6 +15,7 @@ import * as e from 'express';
 })
 export class ExerciseService {
   private exerciseUrl = 'http://localhost:3000/api/exercise'
+  private exerciseByIdUrl = 'http://localhost:3000/api/exercise'
 
   constructor(
     private http: HttpClient,
@@ -41,9 +42,13 @@ export class ExerciseService {
   }
 
   getExercise(id: number): Observable<Exercise> {
-    const exercise = EXERSICES.find(e => e.id === id)!;
+    const url = this.exerciseByIdUrl.concat(`/${id}`)
+    const exercise = this.http.get<Exercise>(url)
+    .pipe(
+      catchError(this.handleError<Exercise>('this.getExercise'))
+    )
     this.notesService.add(`ExerciseService: fetche exercise with id: ${id}`);
-    return of(exercise);
+    return exercise;
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

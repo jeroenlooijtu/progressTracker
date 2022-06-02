@@ -21,7 +21,6 @@ app.use(function(req, res, next) {
     );
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    logger.log(res.getHeader())
     next();
 });
 
@@ -32,7 +31,7 @@ app.listen(port, () => {
 app.use((error, req, res, next) => {
     logger.log("Errorhandler called!", error);
     res.status(error.errCode).json({
-        error: "An error happened",
+        error: error.errCode,
         message: error.message
     });
 });
