@@ -11,8 +11,6 @@ app.get('/', (req, res) => {
 
 app.use(bodyparser.json());
 
-require("./Routes/exercise.routes.js")(app);
-
 app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader(
@@ -35,5 +33,7 @@ app.use((error, req, res, next) => {
         message: error.message
     });
 });
+
+require("./Routes/exercise.routes.js")(app);
 
 module.exports = app;
