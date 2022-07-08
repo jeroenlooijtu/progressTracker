@@ -1,0 +1,20 @@
+name: GitlabSync
+
+on:
+  - push
+  - delete
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    name: Git Repo Sync
+    steps:
+    - uses: actions/chekout@v2
+      with:
+        fetch-depth: 0
+    - uses: wangchucheng/git-repo-sync@v0.1.0
+      with: 
+        target-url: https://gitlab.com/jeroenlooijtu/progressTracker.git
+        target-username: jeroenlooijtu
+        target-token: glpat-1DrxTrsnsg1x6Eu4nJU4
+
