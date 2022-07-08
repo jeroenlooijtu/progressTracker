@@ -26,14 +26,18 @@ app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
 
-app.use((error, req, res, next) => {
-    logger.log("Errorhandler called!", error);
-    res.status(error.errCode).json({
-        error: error.errCode,
-        message: error.message
-    });
-});
+
 
 require("./Routes/exercise.routes.js")(app);
+require("./Routes/workout.routes.js")(app);
+require("./Routes/users.routes.js")(app);
+
+app.use((err, req, res, next) => {
+    logger.log("Errorhandler called!", err);
+    res.status(err.errCode).json({
+        error: "something went wrong idiot, baka, stupid, nightmare",
+        message: err.message,
+    });
+});
 
 module.exports = app;

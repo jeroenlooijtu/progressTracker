@@ -1,0 +1,16 @@
+[{
+    "Id": 1,
+    "Name": "Shoyo",
+    "LastName": "Hinata",
+    "email": "Shoyo@karasu.com",
+    "Age": 16,
+    "Password": "password"
+},
+{
+    "Id": 2,
+    "Name": "Tobio",
+    "LastName": "Kageyama",
+    "email": "Tobio@karasu.com",
+    "Age": 16,
+    "password": "password"
+}]
